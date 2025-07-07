@@ -1,0 +1,11 @@
+आयातः "गणकसंग्रहः"        # import math
+मान = गणकसंग्रहः.sqrt(२५)   # value = math.sqrt(25)
+लेखय "उत्तर:", मान           # print("उत्तर:", value)
+
+यदि मान == ५:
+    लेखय "सत्य!"             # print("सत्य!")
+अन्यथा:
+    लेखय "असत्य!"           # print("असत्य!")
+
+पीएचपी_कोड = "echo sqrt(36);"    # Inline PHP code
+चालय "php", पीएचपी_कोड          # Run via subprocess
