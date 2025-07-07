@@ -1,0 +1,38 @@
+{
+  "सत्य": {
+    "python": "True",
+    "php": "true"
+  },
+  "असत्य": {
+    "python": "False",
+    "php": "false"
+  },
+  "लेखय": {
+    "python": "print",
+    "php": "echo"
+  },
+  "आयातः": {
+    "python": "import",
+    "php": "include"
+  },
+  "चालय": {
+    "python": "subprocess.run",
+    "php": "exec"
+  },
+  "गणकसंग्रहः": {
+    "python": "math",
+    "php": ""
+  },
+  "मान": {
+    "python": "value",
+    "php": "$value"
+  },
+  "यदि": {
+    "python": "if",
+    "php": "if"
+  },
+  "अन्यथा": {
+    "python": "else",
+    "php": "else"
+  }
+}
