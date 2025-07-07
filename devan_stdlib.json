@@ -1,122 +1,73 @@
 {
-  "लेखय": {
-    "python": "print",
-    "php": "echo"
-  },
-  "आयातः": {
-    "python": "import",
-    "php": "include"
-  },
-  "गणकसंग्रहः": {
-    "python": "math",
-    "php": ""
-  },
-  "चालय": {
-    "python": "subprocess.run",
-    "php": ""
-  },
-  "मान": {
-    "python": "value",
-    "php": "$value"
-  },
-  "सत्य": {
-    "python": "True",
-    "php": "true"
-  },
-  "असत्य": {
-    "python": "False",
-    "php": "false"
-  },
-  "यदि": {
-    "python": "if",
-    "php": "if"
-  },
-  "अन्यथा": {
-    "python": "else",
-    "php": "else"
-  },
-  "अंतः": {
-    "python": "in",
-    "php": "in_array"
-  },
-  "लूप": {
-    "python": "for",
-    "php": "foreach"
-  },
-  "वापस": {
-    "python": "return",
-    "php": "return"
-  },
-  "परिभाषय": {
-    "python": "def",
-    "php": "function"
-  },
-  "वर्गः": {
-    "python": "class",
-    "php": "class"
-  },
-  "स्व": {
-    "python": "self",
-    "php": "$this"
-  },
-  "इनपुट": {
-    "python": "input",
-    "php": "readline"
-  },
-  "लंबः": {
-    "python": "len",
-    "php": "count"
-  },
-  "सूची": {
-    "python": "list",
-    "php": "array"
-  },
-  "संग्रहः": {
-    "python": "dict",
-    "php": "array"
-  },
-  "सरणिः": {
-    "python": "array",
-    "php": "array"
-  },
-  "संकलनम्": {
-    "python": "set",
-    "php": "array_unique"
-  },
-  "रूपांतर": {
-    "python": "str",
-    "php": "strval"
-  },
-  "पूर्णांक": {
-    "python": "int",
-    "php": "intval"
-  },
-  "तथ्य": {
-    "python": "bool",
-    "php": "boolval"
-  },
-  "योग": {
-    "python": "sum",
-    "php": "array_sum"
-  },
-  "छपय": {
-    "python": "print",
-    "php": "print"
-  },
-  "निर्यातः": {
-    "python": "export",
-    "php": "var_export"
-  },
-  "स्मृति": {
-    "python": "memory",
-    "php": "memory_get_usage"
-  },
-  "कथं": {
-    "python": "how",
-    "php": "var_dump"
-  },
-  "मुद्रण": {
-    "python": "print",
-    "php": "echo"
-  }
+  "लेखय": { "python": "print", "php": "echo" },
+  "आयातः": { "python": "import", "php": "include" },
+  "गणकसंग्रहः": { "python": "math", "php": "" },
+  "चालय": { "python": "subprocess.run", "php": "shell_exec" },
+  "मान": { "python": "value", "php": "$value" },
+  "सत्य": { "python": "True", "php": "true" },
+  "असत्य": { "python": "False", "php": "false" },
+  "यदि": { "python": "if", "php": "if" },
+  "अन्यथा": { "python": "else", "php": "else" },
+  "अंतः": { "python": "in", "php": "in_array" },
+  "नअस्ति": { "python": "not in", "php": "!in_array" },
+  "लूप": { "python": "for", "php": "foreach" },
+  "यावत्": { "python": "while", "php": "while" },
+  "वापस": { "python": "return", "php": "return" },
+  "परिभाषय": { "python": "def", "php": "function" },
+  "वर्गः": { "python": "class", "php": "class" },
+  "स्व": { "python": "self", "php": "$this" },
+  "इनपुट": { "python": "input", "php": "readline" },
+  "लंबः": { "python": "len", "php": "count" },
+  "सूची": { "python": "list", "php": "array" },
+  "संग्रहः": { "python": "dict", "php": "array" },
+  "सरणिः": { "python": "array", "php": "array" },
+  "संकलनम्": { "python": "set", "php": "array_unique" },
+  "रूपांतर": { "python": "str", "php": "strval" },
+  "पूर्णांक": { "python": "int", "php": "intval" },
+  "तथ्य": { "python": "bool", "php": "boolval" },
+  "योग": { "python": "sum", "php": "array_sum" },
+  "छपय": { "python": "print", "php": "print" },
+  "निर्यातः": { "python": "export", "php": "var_export" },
+  "स्मृति": { "python": "memory", "php": "memory_get_usage" },
+  "कथं": { "python": "how", "php": "var_dump" },
+  "मुद्रण": { "python": "print", "php": "echo" },
+  "तोड़": { "python": "break", "php": "break" },
+  "जारी": { "python": "continue", "php": "continue" },
+  "प्रयत्न": { "python": "try", "php": "try" },
+  "पकड़": { "python": "except", "php": "catch" },
+  "उठाओ": { "python": "raise", "php": "throw" },
+  "खोल": { "python": "open", "php": "fopen" },
+  "पढ़": { "python": "read", "php": "fread" },
+  "लिख": { "python": "write", "php": "fwrite" },
+  "बंद": { "python": "close", "php": "fclose" },
+  "छंदः": { "python": "range", "php": "range" },
+  "गिन": { "python": "enumerate", "php": "array_keys" },
+  "प्रकार": { "python": "type", "php": "gettype" },
+  "तिथि": { "python": "datetime", "php": "date" },
+  "समय": { "python": "time", "php": "time" },
+  "विलम्ब": { "python": "sleep", "php": "sleep" },
+  "पथ": { "python": "os.path", "php": "dirname" },
+  "मिटाय": { "python": "del", "php": "unset" },
+  "स्थिति": { "python": "os.getcwd", "php": "getcwd" },
+  "पर्यावरण": { "python": "os.environ", "php": "getenv" },
+  "तलाश": { "python": "find", "php": "strpos" },
+  "स्थानापन्न": { "python": "replace", "php": "str_replace" },
+  "विभज": { "python": "split", "php": "explode" },
+  "जोड": { "python": "join", "php": "implode" },
+  "त्रुटि": { "python": "Error", "php": "Error" },
+  "मुद्रित": { "python": "__str__", "php": "__toString" },
+  "सुनिश्चित": { "python": "assert", "php": "assert" },
+  "खाली": { "python": "None", "php": "null" },
+  "नव": { "python": "new", "php": "new" },
+  "कोण": { "python": "math.radians", "php": "deg2rad" },
+  "डिग्री": { "python": "math.degrees", "php": "rad2deg" },
+  "समान": { "python": "==", "php": "==" },
+  "विषम": { "python": "!=", "php": "!=" },
+  "अधिक": { "python": ">", "php": ">" },
+  "कमी": { "python": "<", "php": "<" },
+  "तुल्य": { "python": ">=", "php": ">=" },
+  "न्यून": { "python": "<=", "php": "<=" },
+  "और": { "python": "and", "php": "&&" },
+  "या": { "python": "or", "php": "||" },
+  "नहीं": { "python": "not", "php": "!" }
 }
