@@ -37,7 +37,7 @@ Devan is a Sanskrit-style programming language that supports both **interpreting
 
 ## 🧪 Example
 
-**File: `hello.Om`**
+**File: `test.Om`**
 
 ```sanskrit
 आयातः "गणकसंग्रहः"
