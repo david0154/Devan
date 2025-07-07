@@ -1,12 +1,4 @@
 {
-  "सत्य": {
-    "python": "True",
-    "php": "true"
-  },
-  "असत्य": {
-    "python": "False",
-    "php": "false"
-  },
   "लेखय": {
     "python": "print",
     "php": "echo"
@@ -15,17 +7,25 @@
     "python": "import",
     "php": "include"
   },
-  "चालय": {
-    "python": "subprocess.run",
-    "php": "exec"
-  },
   "गणकसंग्रहः": {
     "python": "math",
+    "php": ""
+  },
+  "चालय": {
+    "python": "subprocess.run",
     "php": ""
   },
   "मान": {
     "python": "value",
     "php": "$value"
+  },
+  "सत्य": {
+    "python": "True",
+    "php": "true"
+  },
+  "असत्य": {
+    "python": "False",
+    "php": "false"
   },
   "यदि": {
     "python": "if",
@@ -34,5 +34,89 @@
   "अन्यथा": {
     "python": "else",
     "php": "else"
+  },
+  "अंतः": {
+    "python": "in",
+    "php": "in_array"
+  },
+  "लूप": {
+    "python": "for",
+    "php": "foreach"
+  },
+  "वापस": {
+    "python": "return",
+    "php": "return"
+  },
+  "परिभाषय": {
+    "python": "def",
+    "php": "function"
+  },
+  "वर्गः": {
+    "python": "class",
+    "php": "class"
+  },
+  "स्व": {
+    "python": "self",
+    "php": "$this"
+  },
+  "इनपुट": {
+    "python": "input",
+    "php": "readline"
+  },
+  "लंबः": {
+    "python": "len",
+    "php": "count"
+  },
+  "सूची": {
+    "python": "list",
+    "php": "array"
+  },
+  "संग्रहः": {
+    "python": "dict",
+    "php": "array"
+  },
+  "सरणिः": {
+    "python": "array",
+    "php": "array"
+  },
+  "संकलनम्": {
+    "python": "set",
+    "php": "array_unique"
+  },
+  "रूपांतर": {
+    "python": "str",
+    "php": "strval"
+  },
+  "पूर्णांक": {
+    "python": "int",
+    "php": "intval"
+  },
+  "तथ्य": {
+    "python": "bool",
+    "php": "boolval"
+  },
+  "योग": {
+    "python": "sum",
+    "php": "array_sum"
+  },
+  "छपय": {
+    "python": "print",
+    "php": "print"
+  },
+  "निर्यातः": {
+    "python": "export",
+    "php": "var_export"
+  },
+  "स्मृति": {
+    "python": "memory",
+    "php": "memory_get_usage"
+  },
+  "कथं": {
+    "python": "how",
+    "php": "var_dump"
+  },
+  "मुद्रण": {
+    "python": "print",
+    "php": "echo"
   }
 }
