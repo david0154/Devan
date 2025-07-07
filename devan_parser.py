@@ -4,6 +4,8 @@ import subprocess
 import os
 import devan_installer
 devan_installer.check_and_install()
+import devan_php_runner
+devan_php_runner.run_php_code('echo "Hello PHP";')
 
 class DevanInterpreter:
     def __init__(self, filepath):
