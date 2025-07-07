@@ -1,10 +1,7 @@
-# utils/encryptor.py
-
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
-import os
 
-KEY = b'SanskritLangKey!!'  # Must be 16 bytes
+KEY = b'SanskritLangKey!!'  # 16 bytes key
 
 def encrypt(data: str) -> bytes:
     cipher = AES.new(KEY, AES.MODE_CBC)
