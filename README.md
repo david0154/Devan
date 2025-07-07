@@ -6,9 +6,14 @@
 
 <p align="center">
   <b>A Sanskrit-based language powered by Python & PHP</b><br/>
-  <a href="https://github.com/david0154/Devan"><img src="https://img.shields.io/badge/status-active-brightgreen.svg"></a>
+  <a href="https://github.com/david0154/Devan"><p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/status-active-brightgreen.svg"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-</p>
+  <a href="#"><img src="https://img.shields.io/badge/language-Python%20%7C%20PHP-yellow.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/filetype-.Om-lightgrey.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/style-Sanskrit-orange.svg"></a>
+  <a href="#"><img src="https://img.shields.io/badge/platform-Windows%20|%20Linux%20|%20Mac-informational.svg"></a>
+  </p>
 
 ---
 
