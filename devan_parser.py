@@ -2,6 +2,8 @@
 import json
 import subprocess
 import os
+import devan_installer
+devan_installer.check_and_install()
 
 class DevanInterpreter:
     def __init__(self, filepath):
