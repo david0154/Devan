@@ -57,7 +57,7 @@ print("उत्तर:", value)
 
 ```bash
 git clone https://github.com/david0154/Devan.git
-cd DevanLang
+cd Devan
 pip install -r requirements.txt
 python devan_runner.py run test_files/hello.Om
 ```
@@ -77,7 +77,7 @@ devan compile hello.Om --lang php
 ## 📁 Directory Structure
 
 ```
-DevanLang/
+Devan/
 ├── devan_parser.py
 ├── devan_compiler.py
 ├── devan_runner.py
