@@ -2670,5 +2670,77 @@
   "प्रशासक_विश्लेषण": {
     "python": "admin_analytics",
     "php": "admin_analytics"
+  },
+  "कल्पनाचित्र": {
+    "python": "visualization",
+    "php": "chart"
+  },
+  "प्रवृत्तिपत्रम्": {
+    "python": "activity_report",
+    "php": "activity_report"
+  },
+  "संक्षिप्त_आलेखः": {
+    "python": "summary_chart",
+    "php": "summary_chart"
+  },
+  "सांख्यिकी": {
+    "python": "statistics",
+    "php": "statistics"
+  },
+  "उपपादनम्": {
+    "python": "insight",
+    "php": "insight"
+  },
+  "प्रत्युत्तर_रूपता": {
+    "python": "responsive_design",
+    "php": "responsive_design"
+  },
+  "जावास्क्रिप्ट्_सहयोगः": {
+    "python": "js_integration",
+    "php": "js_integration"
+  },
+  "रूपाकारशैली": {
+    "python": "stylesheet",
+    "php": "stylesheet"
+  },
+  "अभिकल्प_तत्त्वम्": {
+    "python": "design_element",
+    "php": "design_element"
+  },
+  "अन्तरक्रियाशीलता": {
+    "python": "interactivity",
+    "php": "interactivity"
+  },
+  "प्रमाणन_पद्धतिः": {
+    "python": "authentication_method",
+    "php": "authentication_method"
+  },
+  "कूट_संचार": {
+    "python": "encrypted_communication",
+    "php": "encrypted_communication"
+  },
+  "टोकन_प्रबंधः": {
+    "python": "token_management",
+    "php": "token_management"
+  },
+  "उपयोगकर्ता_प्रबंधन": {
+    "python": "user_management",
+    "php": "user_management"
+  },
+  "प्रणाली_संरचना": {
+    "python": "system_config",
+    "php": "system_config"
+  },
+  "विश्लेषण_आलेखः": {
+    "python": "analytics_chart",
+    "php": "analytics_chart"
+  },
+  "अनुमतिः_विन्यासः": {
+    "python": "permissions_setup",
+    "php": "permissions_setup"
+  },
+  "कार्य_सूचिः": {
+    "python": "task_list",
+    "php": "task_list"
   }
 }
