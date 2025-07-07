@@ -77,7 +77,7 @@ print("उत्तर:", value)
 git clone https://github.com/david0154/Devan.git
 cd Devan
 pip install -r requirements.txt
-python devan_runner.py run test_files/hello.Om
+python devan_runner.py run test_files/test.Om
 ```
 
 ---
