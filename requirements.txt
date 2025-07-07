@@ -2,3 +2,7 @@ colorama
 numpy
 pandas
 requests
+transformers
+torch
+sentencepiece
+cryptography
