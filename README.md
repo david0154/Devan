@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>A Sanskrit-based language powered by Python & PHP</b><br/>
-  <a href="https://github.com/NexuzyTech/DevanLang"><img src="https://img.shields.io/badge/status-active-brightgreen.svg"></a>
+  <a href="https://github.com/david0154/Devan"><img src="https://img.shields.io/badge/status-active-brightgreen.svg"></a>
   <a href="#"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>
 
