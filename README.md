@@ -17,21 +17,34 @@
 
 ---
 
-## 🔹 Overview
+## 🔹Overview
 
-Devan is a Sanskrit-style programming language that supports both **interpreting** and **compiling** into Python or PHP. Files are written using `.Om` extension and leverage a custom mapping system from Sanskrit to modern code.
+Devan is a Sanskrit-inspired programming language that allows you to write logical code in the sacred style of Sanskrit. It supports both interpreting and compiling into modern languages like Python and PHP. Code files use the .Om extension and are translated using a custom Sanskrit-to-code mapping system.
+
 
 ---
 
-## 📦 Features
+📦 Key Features
 
-- 🧠 Interpreter for `.Om` files using Python & PHP
-- 🛠 Compiler to `.py` or `.php`
-- 📜 Sanskrit-to-Code Mapping (JSON)
-- 📦 Auto Installer for Python libraries
-- 💻 CLI tool: `devan run` / `devan compile`
-- 🧰 PHP Executor
-- ✅ Cross-platform (Windows, MacOS, Linux, Ubuntu)
+🧠 Interpreter for .Om files – Run directly via Python
+
+🛠 Compiler – Convert .Om to .py or .php seamlessly
+
+📜 Sanskrit-to-Code Mapping – Powered by a customizable JSON-based structure
+
+🔄 Auto AI Translation – Translate English input to Sanskrit using offline Indic NLP models
+
+🔐 Local File Encryption – Auto-encrypt original and translated files for privacy
+
+📦 One-Line Installer – Automatically install required Python packages
+
+💻 CLI Tool – Simple commands like devan run and devan compile
+
+🧰 PHP Runtime Support – Execute .Om code in PHP using built-in executor
+
+🧱 Cross-Platform – Works on Windows, macOS, Linux, and Ubuntu
+
+
 
 ---
 
