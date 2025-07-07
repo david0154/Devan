@@ -56,7 +56,7 @@ print("उत्तर:", value)
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/NexuzyTech/DevanLang.git
+git clone https://github.com/david0154/Devan.git
 cd DevanLang
 pip install -r requirements.txt
 python devan_runner.py run test_files/hello.Om
