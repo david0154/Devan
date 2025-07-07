@@ -1,5 +1,3 @@
-# utils/translator.py
-
 import os
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
