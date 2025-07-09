@@ -2,8 +2,16 @@ import subprocess
 import sys
 import importlib
 
-# 📦 List of essential packages required by DevanLang
-REQUIRED_PACKAGES = ["numpy", "pandas", "requests"]
+REQUIRED_PACKAGES = [
+    "numpy",
+    "pandas",
+    "requests",
+    "matplotlib",
+    "flask",
+    "cryptography",
+    "PyPDF2",
+    "chardet"
+]
 
 def is_installed(package_name):
     try:
@@ -17,12 +25,12 @@ def install_package(package_name):
     try:
         subprocess.check_call(
             [sys.executable, "-m", "pip", "install", package_name],
-            stdout=subprocess.DEVNULL,  # Hide pip logs
+            stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
         )
         print(f"✅ Installed: {package_name}")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to install {package_name} (Error code {e.returncode})")
+        print(f"❌ Failed to install {package_name}: {e}")
 
 def check_and_install():
     print("🔍 Checking required packages...")
