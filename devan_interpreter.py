@@ -26,9 +26,9 @@ class DevanInterpreter:
         except json.JSONDecodeError as e:
             print(f"❌ Error loading stdlib JSON: {e}")
             exit(1)
-<<<<<<< HEAD
 
     def patch_runtime_translations(self):
+        # 📚 Patching runtime standard translations
         patch = {
             "write": {"python": "print", "php": "echo"},
             "inputं": {"python": "input", "php": "readline"},
@@ -46,9 +46,11 @@ class DevanInterpreter:
             "चक्रं": {"python": "while", "php": "while"},
             "समाप्तं": {"python": "", "php": ""},
         }
-        self.stdlib.update(patch)
-=======
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
+        for k, v in patch.items():
+            if k not in self.stdlib:
+                self.stdlib[k] = v
+            else:
+                self.stdlib[k].update(v)
 
     def read_code(self):
         try:
@@ -62,16 +64,10 @@ class DevanInterpreter:
             exit(1)
 
     def translate_line(self, line, lang="python"):
-<<<<<<< HEAD
-        # 🧼 Clean punctuation
+        # 🧼 Clean Devanagari punctuation
         line = line.replace("।", "").replace("॥", "").replace(";", "")
-=======
-        # ✅ Strip non-Python punctuation
-        line = line.replace("।", "").replace("॥", "")
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
-
         for sanskrit, mapping in self.stdlib.items():
-            if lang in mapping and mapping[lang]:
+            if isinstance(mapping, dict) and lang in mapping and mapping[lang]:
                 line = line.replace(sanskrit, mapping[lang])
         return line
 
@@ -80,7 +76,13 @@ class DevanInterpreter:
 
     def run_php_block(self, code_line):
         try:
-            code = code_line.split("php", 1)[-1].strip().strip('"').strip("'")
+            if "php" in code_line.lower():
+                _, code = code_line.lower().split("php", 1)
+            elif "चालय" in code_line:
+                _, code = code_line.split("चालय", 1)
+            else:
+                return
+            code = code.strip().strip('"').strip("'")
             result = subprocess.run(["php", "-r", code], capture_output=True, text=True)
             if result.stdout:
                 print(result.stdout.strip())
@@ -95,21 +97,13 @@ class DevanInterpreter:
             exec(code, globals())
         except Exception as e:
             print("⚠️ Python Execution Error:")
-<<<<<<< HEAD
             print("--- Translated code ---")
             print(code)
-=======
-            print(code)  # Optional: show translated source
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
             print(f"➡️ {e}")
 
     def run(self):
         lexer = DevanLexer(self.code)
-<<<<<<< HEAD
-        _ = lexer.tokenize()  # not used directly yet
-=======
-        _ = lexer.tokenize()  # Not used directly yet
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
+        _ = lexer.tokenize()  # Tokenization logic available for future use
 
         for line in self.code.splitlines():
             if self.is_php_block(line):
@@ -143,7 +137,3 @@ if __name__ == "__main__":
 
     interpreter = DevanInterpreter(file)
     interpreter.run()
-<<<<<<< HEAD
-=======
-
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
