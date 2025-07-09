@@ -2742,5 +2742,13 @@
   "कार्य_सूचिः": {
     "python": "task_list",
     "php": "task_list"
-  }
+  },
+
+  "mergeतु": { "python": "append", "php": "" },
+  "write": { "python": "print", "php": "echo" },
+  "inputं": { "python": "input", "php": "readline" },
+  "sortांकः": { "python": "index", "php": "" },
+  "list": { "python": "list", "php": "array" },
+  "विरम": { "python": "break", "php": "break" },
+  "taskं": { "python": "task", "php": "task" }
 }
