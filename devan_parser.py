@@ -24,11 +24,11 @@ class DevanInterpreter:
             print("❌ Error: 'devan_stdlib.json' not found.")
             exit(1)
         except json.JSONDecodeError as e:
-<<<<<<< HEAD
             print(f"❌ Error loading stdlib JSON: {e}")
             exit(1)
 
     def patch_runtime_translations(self):
+        # 📚 Patching runtime standard translations
         patch = {
             "write": {"python": "print", "php": "echo"},
             "inputं": {"python": "input", "php": "readline"},
@@ -46,7 +46,11 @@ class DevanInterpreter:
             "चक्रं": {"python": "while", "php": "while"},
             "समाप्तं": {"python": "", "php": ""},
         }
-        self.stdlib.update(patch)
+        for k, v in patch.items():
+            if k not in self.stdlib:
+                self.stdlib[k] = v
+            else:
+                self.stdlib[k].update(v)
 
     def read_code(self):
         try:
@@ -57,35 +61,28 @@ class DevanInterpreter:
             exit(1)
         except Exception as e:
             print(f"❌ Error reading file: {e}")
-=======
-            print(f"❌ Error decoding JSON: {e}")
-            exit(1)
-
-    def read_file(self):
-        try:
-            with open(self.filepath, "r", encoding="utf-8") as f:
-                return f.readlines()
-        except UnicodeDecodeError:
-            print(f"❌ Cannot read '{self.filepath}': Not a valid UTF-8 file. Is it encrypted?")
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
             exit(1)
 
     def translate_line(self, line, lang="python"):
-        # 🧼 Clean punctuation
+        # 🧼 Clean Devanagari punctuation
         line = line.replace("।", "").replace("॥", "").replace(";", "")
-
         for sanskrit, mapping in self.stdlib.items():
-            if lang in mapping and mapping[lang]:
+            if isinstance(mapping, dict) and lang in mapping and mapping[lang]:
                 line = line.replace(sanskrit, mapping[lang])
         return line
 
     def is_php_block(self, line):
         return "php" in line.lower() or "चालय" in line
 
-<<<<<<< HEAD
     def run_php_block(self, code_line):
         try:
-            code = code_line.split("php", 1)[-1].strip().strip('"').strip("'")
+            if "php" in code_line.lower():
+                _, code = code_line.lower().split("php", 1)
+            elif "चालय" in code_line:
+                _, code = code_line.split("चालय", 1)
+            else:
+                return
+            code = code.strip().strip('"').strip("'")
             result = subprocess.run(["php", "-r", code], capture_output=True, text=True)
             if result.stdout:
                 print(result.stdout.strip())
@@ -93,17 +90,6 @@ class DevanInterpreter:
                 print(f"⚠️ PHP stderr: {result.stderr.strip()}")
         except Exception as e:
             print(f"⚠️ PHP Error: {e}")
-=======
-    def process_lines(self):
-        for line in self.lines:
-            if self.detect_php_block(line):
-                parts = line.strip().split("=", 1)
-                if len(parts) == 2 and "php" in parts[1].lower():
-                    php_raw = parts[1].split("php", 1)[-1].strip().strip('"').strip("'")
-                    self.php_blocks.append(php_raw)
-                    continue
-            self.translated_lines.append(self.translate_line(line, lang="python"))
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
 
     def execute_python_code(self):
         code = "\n".join(self.translated_lines)
@@ -117,9 +103,8 @@ class DevanInterpreter:
 
     def run(self):
         lexer = DevanLexer(self.code)
-        _ = lexer.tokenize()  # not used directly yet
+        _ = lexer.tokenize()  # Tokenization logic available for future use
 
-<<<<<<< HEAD
         for line in self.code.splitlines():
             if self.is_php_block(line):
                 self.run_php_block(line)
@@ -137,18 +122,6 @@ if __name__ == "__main__":
         print("""
 ❌ Usage:
    python devan_interpreter.py <file.Om>
-=======
-# CLI Entry Point
-if __name__ == "__main__":
-    import sys
-    if len(sys.argv) < 2:
-        print("""
-❌ Usage:
-  python devan_parser.py <file.Om>
-
-📝 Note:
-  Make sure you provide a clean, unencrypted source file. Encrypted or binary .Om files cannot be parsed directly.
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
 """)
         exit(1)
 
@@ -164,7 +137,3 @@ if __name__ == "__main__":
 
     interpreter = DevanInterpreter(file)
     interpreter.run()
-<<<<<<< HEAD
-
-=======
->>>>>>> 10b93076c1cb298208de5f8bcefd42bd2eb6971c
