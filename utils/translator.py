@@ -11,12 +11,21 @@ model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME, trust_remote_code=True
 def translate_to_sanskrit(text: str) -> str:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
+    
     prefix = "translate English to Sanskrit: "
     input_text = prefix + text
-    inputs = tokenizer(input_text, return_tensors="pt", padding=True, truncation=True, max_length=512)
+    
+    inputs = tokenizer(
+        input_text,
+        return_tensors="pt",
+        padding=True,
+        truncation=True,
+        max_length=512
+    )
     inputs = {k: v.to(device) for k, v in inputs.items()}
+    
     outputs = model.generate(**inputs, max_length=512)
-
+    
     return tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
 
 if __name__ == "__main__":
