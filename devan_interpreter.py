@@ -38,6 +38,9 @@ class DevanInterpreter:
             exit(1)
 
     def translate_line(self, line, lang="python"):
+        # ✅ Strip non-Python punctuation
+        line = line.replace("।", "").replace("॥", "")
+
         for sanskrit, mapping in self.stdlib.items():
             if lang in mapping and mapping[lang]:
                 line = line.replace(sanskrit, mapping[lang])
@@ -62,11 +65,13 @@ class DevanInterpreter:
         try:
             exec(code, globals())
         except Exception as e:
-            print(f"⚠️ Python Execution Error: {e}")
+            print("⚠️ Python Execution Error:")
+            print(code)  # Optional: show translated source
+            print(f"➡️ {e}")
 
     def run(self):
         lexer = DevanLexer(self.code)
-        _ = lexer.tokenize()  # Not used directly in this version
+        _ = lexer.tokenize()  # Not used directly yet
 
         for line in self.code.splitlines():
             if self.is_php_block(line):
@@ -100,3 +105,4 @@ if __name__ == "__main__":
 
     interpreter = DevanInterpreter(file)
     interpreter.run()
+
