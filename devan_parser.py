@@ -1,4 +1,3 @@
-# devan_parser.py
 import json
 import subprocess
 import os
@@ -21,12 +20,19 @@ class DevanInterpreter:
             with open("devan_stdlib.json", "r", encoding="utf-8") as f:
                 return json.load(f)
         except FileNotFoundError:
-            print("❌ Standard library file 'devan_stdlib.json' not found.")
-            return {}
+            print("❌ Error: 'devan_stdlib.json' not found.")
+            exit(1)
+        except json.JSONDecodeError as e:
+            print(f"❌ Error decoding JSON: {e}")
+            exit(1)
 
     def read_file(self):
-        with open(self.filepath, "r", encoding="utf-8") as f:
-            return f.readlines()
+        try:
+            with open(self.filepath, "r", encoding="utf-8") as f:
+                return f.readlines()
+        except UnicodeDecodeError:
+            print(f"❌ Cannot read '{self.filepath}': Not a valid UTF-8 file. Is it encrypted?")
+            exit(1)
 
     def translate_line(self, line, lang="python"):
         for sanskrit, mapping in self.stdlib.items():
@@ -40,15 +46,12 @@ class DevanInterpreter:
     def process_lines(self):
         for line in self.lines:
             if self.detect_php_block(line):
-                # Extract inline PHP code from चालय = "php echo ...";
                 parts = line.strip().split("=", 1)
                 if len(parts) == 2 and "php" in parts[1].lower():
                     php_raw = parts[1].split("php", 1)[-1].strip().strip('"').strip("'")
                     self.php_blocks.append(php_raw)
                     continue
-            # Otherwise treat as Python code
-            translated = self.translate_line(line, lang="python")
-            self.translated_lines.append(translated)
+            self.translated_lines.append(self.translate_line(line, lang="python"))
 
     def execute_python(self):
         code = "\n".join(self.translated_lines)
@@ -71,17 +74,28 @@ class DevanInterpreter:
         if self.php_blocks:
             self.execute_php_blocks()
 
-# CLI Entry
+# CLI Entry Point
 if __name__ == "__main__":
     import sys
     if len(sys.argv) < 2:
-        print("❌ Usage: python devan_parser.py <file.Om>")
-    else:
-        file = sys.argv[1]
-        if not file.endswith((".Om", ".OM", ".om")):
-            print("❌ File must end with .Om")
-        elif not os.path.isfile(file):
-            print(f"❌ File not found: {file}")
-        else:
-            interpreter = DevanInterpreter(file)
-            interpreter.run()
+        print("""
+❌ Usage:
+  python devan_parser.py <file.Om>
+
+📝 Note:
+  Make sure you provide a clean, unencrypted source file. Encrypted or binary .Om files cannot be parsed directly.
+""")
+        exit(1)
+
+    file = sys.argv[1]
+
+    if not file.endswith((".Om", ".OM", ".om")):
+        print("❌ File must end with .Om")
+        exit(1)
+
+    if not os.path.isfile(file):
+        print(f"❌ File not found: {file}")
+        exit(1)
+
+    interpreter = DevanInterpreter(file)
+    interpreter.run()
