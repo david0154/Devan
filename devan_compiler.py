@@ -1,4 +1,3 @@
-# devan_compiler.py
 import json
 import os
 import sys
@@ -12,16 +11,27 @@ class DevanCompiler:
         self.translated_lines = []
 
     def load_stdlib(self):
-        with open("devan_stdlib.json", "r", encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open("devan_stdlib.json", "r", encoding="utf-8") as f:
+                return json.load(f)
+        except FileNotFoundError:
+            print("❌ Error: 'devan_stdlib.json' not found.")
+            sys.exit(1)
+        except json.JSONDecodeError as e:
+            print(f"❌ Error decoding stdlib JSON: {e}")
+            sys.exit(1)
 
     def read_file(self):
-        with open(self.filepath, "r", encoding="utf-8") as f:
-            return f.readlines()
+        try:
+            with open(self.filepath, "r", encoding="utf-8") as f:
+                return f.readlines()
+        except UnicodeDecodeError:
+            print(f"❌ Cannot read file '{self.filepath}': Not a valid UTF-8 text file. Is it encrypted?")
+            sys.exit(1)
 
     def detect_language(self):
-        python_keywords = sum(1 for line in self.lines for word in self.stdlib if self.stdlib[word]["python"] in line)
-        php_keywords = sum(1 for line in self.lines for word in self.stdlib if self.stdlib[word]["php"] in line)
+        python_keywords = sum(1 for line in self.lines for word in self.stdlib if self.stdlib[word].get("python") in line)
+        php_keywords = sum(1 for line in self.lines for word in self.stdlib if self.stdlib[word].get("php") in line)
         return "python" if python_keywords >= php_keywords else "php"
 
     def translate_line(self, line, lang):
@@ -32,6 +42,10 @@ class DevanCompiler:
 
     def compile(self):
         lang = self.output_lang
+        if lang not in {"python", "php", "auto"}:
+            print(f"❌ Unknown language option: {lang}. Use 'python', 'php', or 'auto'.")
+            sys.exit(1)
+
         if lang == "auto":
             lang = self.detect_language()
 
@@ -43,16 +57,18 @@ class DevanCompiler:
         output_ext = ".py" if lang == "python" else ".php"
         output_file = base_name + output_ext
 
-        with open(output_file, "w", encoding="utf-8") as f:
-            if lang == "php":
-                f.write("<?php\n")
-            f.write("\n".join(self.translated_lines))
-            if lang == "php":
-                f.write("\n?>")
+        try:
+            with open(output_file, "w", encoding="utf-8") as f:
+                if lang == "php":
+                    f.write("<?php\n")
+                f.write("\n".join(self.translated_lines))
+                if lang == "php":
+                    f.write("\n?>")
+            print(f"✅ Compiled to: {output_file} [{lang.upper()}]")
+        except Exception as e:
+            print(f"❌ Failed to write output file: {e}")
 
-        print(f"✅ Compiled: {output_file}")
-
-# CLI usage
+# CLI entry point
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("❌ Usage: python devan_compiler.py <file.Om> [--lang python|php|auto]")
