@@ -57,8 +57,10 @@ class DevanInterpreter:
             with open(self.filepath, "r", encoding="utf-8") as f:
                 return f.read()
         except UnicodeDecodeError:
-            print(f"❌ Cannot read '{self.filepath}' as UTF-8. Is it encrypted?")
-            exit(1)
+            # 🔹 PATCH: Removed encryption check — now always reads file
+            with open(self.filepath, "rb") as f:
+                raw_data = f.read()
+            return raw_data.decode("utf-8", errors="replace")
         except Exception as e:
             print(f"❌ Error reading file: {e}")
             exit(1)
