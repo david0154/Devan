@@ -8,7 +8,6 @@ REQUIRED_PACKAGES = [
     "requests",
     "matplotlib",
     "flask",
-    "cryptography",
     "PyPDF2",
     "chardet"
 ]
