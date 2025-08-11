@@ -5,5 +5,3 @@ requests
 transformers
 torch
 sentencepiece
-cryptography
-pycryptodome
