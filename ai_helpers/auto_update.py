@@ -1,6 +1,6 @@
 import logging
 from model_manager import check_model_update, update_model
-from model_manager import check_github_language_update, update_language_file
+from model_manager import check_github_file_update, update_file_from_github
 
 # ✅ Set up logging
 logging.basicConfig(
@@ -9,10 +9,9 @@ logging.basicConfig(
     format='%(asctime)s — %(levelname)s — %(message)s'
 )
 
-# 🔁 Model & Language auto updater
-def auto_update_models_and_language():
+def auto_update_models_and_resources():
     repo_url = "https://github.com/david0154/Devan.git"
-    lang_file_path = "devan_stdlib.json"  # Make sure it's correct relative path
+    file_path = "devan_stdlib.json"  # Resource file path in repo
 
     # 🔄 Update models
     for model_key in ["tinybert", "codegen-350m"]:
@@ -25,16 +24,15 @@ def auto_update_models_and_language():
         except Exception as e:
             logging.error(f"❌ Failed to update {model_key}: {e}")
 
-    # 🔄 Update language file
+    # 🔄 Update devan_stdlib.json (no encryption)
     try:
-        if check_github_language_update(repo_url, lang_file_path):
-            update_language_file(repo_url, lang_file_path)
-            logging.info("✅ Language file updated: devan_stdlib.json")
+        if check_github_file_update(repo_url, file_path):
+            update_file_from_github(repo_url, file_path)
+            logging.info(f"✅ Updated resource file: {file_path}")
         else:
-            logging.info("⏸ No change in devan_stdlib.json")
+            logging.info(f"⏸ No update needed for {file_path}")
     except Exception as e:
-        logging.error(f"❌ Language update failed: {e}")
+        logging.error(f"❌ Failed to update {file_path}: {e}")
 
-# 📜 Entry point
 if __name__ == "__main__":
-    auto_update_models_and_language()
+    auto_update_models_and_resources()
