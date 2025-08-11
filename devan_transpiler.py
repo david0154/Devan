@@ -60,17 +60,30 @@ def transpile(input_path, lang=None, reverse=False):
         reverse_stdlib = build_reverse_stdlib(stdlib, lang=lang)
         output_path = input_path.replace(".py", ".Om").replace(".php", ".Om")
 
-        # Remove PHP tags
+        # Remove PHP tags for reverse translation
         if lang == "php":
-            lines = [l for l in lines if not l.strip().startswith("<?") and not l.strip().startswith("?>")]
+            lines = [
+                l for l in lines
+                if not l.strip().startswith("<?") and not l.strip().startswith("?>")
+            ]
 
-        translated_lines = [translate_line_to_sanskrit(line, reverse_stdlib) for line in lines]
+        translated_lines = [
+            translate_line_to_sanskrit(line, reverse_stdlib)
+            for line in lines
+        ]
 
     else:
         lang = lang or detect_language(lines)
         out_ext = ".py" if lang == "python" else ".php"
-        output_path = input_path.replace(".Om", out_ext).replace(".OM", out_ext).replace(".om", out_ext)
-        translated_lines = [translate_line_to_target(line, stdlib, lang=lang) for line in lines]
+        output_path = (
+            input_path.replace(".Om", out_ext)
+                      .replace(".OM", out_ext)
+                      .replace(".om", out_ext)
+        )
+        translated_lines = [
+            translate_line_to_target(line, stdlib, lang=lang)
+            for line in lines
+        ]
 
     with open(output_path, "w", encoding="utf-8") as f:
         if not reverse and lang == "php":
