@@ -7,14 +7,19 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 def correct_code_with_tinybert(code_snippet):
     """
     Uses a TinyBERT model to check for potential errors in a code snippet.
-    Note: This is a placeholder and should be fine-tuned for accurate code error detection.
+    This is a placeholder example. For real results, fine-tune TinyBERT on code error datasets.
     """
     model, tokenizer = load_model("tinybert")
     model.to(device)
     model.eval()
 
     # Tokenize input code
-    inputs = tokenizer(code_snippet, return_tensors="pt", truncation=True, max_length=128).to(device)
+    inputs = tokenizer(
+        code_snippet,
+        return_tensors="pt",
+        truncation=True,
+        max_length=128
+    ).to(device)
 
     with torch.no_grad():
         outputs = model(**inputs)
@@ -34,14 +39,17 @@ def suggest_completion_with_codegen(code_prefix, max_length=64):
     model.to(device)
     model.eval()
 
-    input_ids = tokenizer.encode(code_prefix, return_tensors="pt").to(device)
+    input_ids = tokenizer.encode(
+        code_prefix,
+        return_tensors="pt"
+    ).to(device)
 
-    # Generate output
+    # Generate completion
     outputs = model.generate(
         input_ids,
         max_length=max_length,
         num_return_sequences=1,
-        pad_token_id=tokenizer.eos_token_id  # for CodeGen
+        pad_token_id=tokenizer.eos_token_id
     )
 
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
