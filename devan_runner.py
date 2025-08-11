@@ -4,7 +4,6 @@ import os
 import chardet
 import time
 from utils.translator import translate_to_sanskrit
-from utils.encryptor import encrypt
 
 def detect_encoding(file_path):
     with open(file_path, 'rb') as f:
@@ -20,28 +19,21 @@ def is_safe_for_text(file_path):
     except UnicodeDecodeError:
         return False
 
-def save_translated_and_encrypted(file_path, skip_translate=False, skip_encrypt=False):
+def save_translated(file_path, skip_translate=False):
     encoding = detect_encoding(file_path)
 
     with open(file_path, 'r', encoding=encoding, errors='replace') as f:
         original_code = f.read()
 
-    # 🔐 Encrypt original .om file
-    if not skip_encrypt:
-        encrypted_path = file_path + '.enc'
-        with open(encrypted_path, 'wb') as f:
-            f.write(encrypt(original_code))
-        print(f"🔐 Encrypted copy saved to: {encrypted_path}")
-
-    # 🧠 Translate to Sanskrit and encrypt
+    # 🧠 Translate to Sanskrit (always plain text, no encryption)
     if not skip_translate:
         try:
             if any(kw in original_code for kw in ["from", "def", "print", "import"]):
                 sanskrit_code = translate_to_sanskrit(original_code)
                 sanskrit_path = file_path.replace('.om', '_sa.om').replace('.OM', '_sa.OM').replace('.Om', '_sa.Om')
-                with open(sanskrit_path, 'wb') as f:
-                    f.write(encrypt(sanskrit_code))
-                print(f"🧠 Sanskrit translation encrypted to: {sanskrit_path}")
+                with open(sanskrit_path, 'w', encoding='utf-8') as f:
+                    f.write(sanskrit_code)
+                print(f"🧠 Sanskrit translation saved to: {sanskrit_path}")
             else:
                 print("🌿 Detected Sanskrit-style syntax. Skipping retranslation.")
         except Exception as e:
@@ -71,8 +63,8 @@ def main():
 🔹 DevanLang CLI Usage 🔹
 
 Usage:
-  devan run <file.Om> [--no-translate] [--no-encrypt]
-  devan compile <file.Om> --lang [python|php|auto] [--no-translate] [--no-encrypt]
+  devan run <file.Om> [--no-translate]
+  devan compile <file.Om> --lang [python|php|auto] [--no-translate]
 """)
         sys.exit(1)
 
@@ -80,9 +72,7 @@ Usage:
     file_path = sys.argv[2]
 
     skip_translate = "--no-translate" in sys.argv
-    skip_encrypt = "--no-encrypt" in sys.argv
 
-    # Normalize extension comparison
     file_path_lower = file_path.lower()
 
     if not file_path_lower.endswith(".om"):
@@ -93,15 +83,11 @@ Usage:
         print(f"❌ File not found: {file_path}")
         sys.exit(1)
 
-    if file_path_lower.endswith(".enc") or file_path_lower.endswith("_sa.om"):
-        print("❌ Cannot run or compile an encrypted or Sanskrit-translated file. Use the original .Om file.")
-        sys.exit(1)
-
     if not is_safe_for_text(file_path):
-        print(f"❌ Cannot read '{file_path}' as text. It may be encrypted or corrupted.")
+        print(f"❌ Cannot read '{file_path}' as text. It may be corrupted or binary.")
         sys.exit(1)
 
-    save_translated_and_encrypted(file_path, skip_translate, skip_encrypt)
+    save_translated(file_path, skip_translate)
 
     if command == "run":
         run_interpreter(file_path)
