@@ -26,8 +26,14 @@ class DevanCompiler:
             with open(self.filepath, "r", encoding="utf-8") as f:
                 return f.readlines()
         except UnicodeDecodeError:
-            print(f"❌ Cannot read file '{self.filepath}': Not a valid UTF-8 text file. Is it encrypted?")
-            sys.exit(1)
+            # 🔹 PATCH: read as raw bytes and decode with fallback instead of error
+            with open(self.filepath, "rb") as f:
+                raw_data = f.read()
+            try:
+                return raw_data.decode("utf-8", errors="replace").splitlines(True)
+            except Exception as e:
+                print(f"❌ Cannot read file '{self.filepath}': {e}")
+                sys.exit(1)
 
     def detect_language(self):
         python_keywords = sum(1 for line in self.lines for word in self.stdlib if self.stdlib[word].get("python") in line)
